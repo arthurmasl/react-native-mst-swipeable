@@ -1,5 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
+import { withRouter } from 'react-router-native';
 
 import styled, { css } from 'styled-components';
 import SwipeableViews from 'react-swipeable-views-native';
@@ -10,7 +11,7 @@ const ContentBlockWrapper = styled.View`
   padding: 0px 5% 0px 5%;
 `;
 
-const ItemWrapper = styled.View`
+const ItemWrapper = styled.TouchableOpacity`
   width: 100px;
   height: 220px;
   margin-right: 20px;
@@ -46,9 +47,9 @@ const Swiper = styled(SwipeableViews)`
   overflow: visible;
 `;
 
-const Item = ({ title, text, bg }) => {
+const Item = ({ title, text, bg, onPress }) => {
   return (
-    <ItemWrapper>
+    <ItemWrapper onPress={onPress} activeOpacity={1}>
       <ItemPic bg={bg} />
       <ItemContent>
         <ItemTitle>{title}</ItemTitle>
@@ -58,16 +59,25 @@ const Item = ({ title, text, bg }) => {
   );
 };
 
-const ContentBlock = ({ store }) => {
+const ContentBlock = ({ history, store, similar }) => {
+  const items = similar ? store.similarItems : store.objectsItems;
+
   return (
     <ContentBlockWrapper>
       <Swiper hysteresis={0.3} resistance>
-        {store.items.map(item => (
-          <Item key={item.id} {...item} />
+        {items.map(item => (
+          <Item
+            key={item.id}
+            {...item}
+            onPress={() => {
+              history.push('/item');
+              store.setCurrentItem(item.id);
+            }}
+          />
         ))}
       </Swiper>
     </ContentBlockWrapper>
   );
 };
 
-export default inject('store')(observer(ContentBlock));
+export default withRouter(inject('store')(observer(ContentBlock)));

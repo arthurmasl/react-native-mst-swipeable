@@ -1,4 +1,5 @@
 import React from 'react';
+import { inject, observer } from 'mobx-react';
 import styled, { css } from 'styled-components';
 import colors from './colors';
 import { withRouter } from 'react-router-native';
@@ -10,7 +11,7 @@ export const BgBlockWrapper = styled.View`
   flex-direction: row;
   justify-content: space-around;
 
-  padding: 30px 5%;
+  padding: 30px 2.5%;
 `;
 
 const Item = styled.TouchableOpacity`
@@ -27,14 +28,22 @@ const Item = styled.TouchableOpacity`
     `};
 `;
 
-const BgBlock = ({ history }) => {
+const BgBlock = ({ store, history }) => {
   return (
     <BgBlockWrapper>
-      <Item bg={colors[1]} onPress={() => history.push('/item')} />
-      <Item bg={colors[2]} center onPress={() => history.push('/item')} />
-      <Item bg={colors[3]} onPress={() => history.push('/item')} />
+      {store.featuredItems.map(item => (
+        <Item
+          activeOpacity={0.8}
+          key={item.id}
+          bg={item.bg}
+          onPress={() => {
+            history.push('/item');
+            store.setCurrentItem(item.id);
+          }}
+        />
+      ))}
     </BgBlockWrapper>
   );
 };
 
-export default withRouter(BgBlock);
+export default withRouter(inject('store')(observer(BgBlock)));
