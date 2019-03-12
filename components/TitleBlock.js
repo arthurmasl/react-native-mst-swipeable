@@ -5,7 +5,7 @@ import { Text } from 'react-native';
 const TitleBlockWrapper = styled.View`
   height: 70px;
   padding: 0 5% 0 5%;
-  background-color: #f9f9f9;
+  /* background-color: #f9f9f9; */
 
   flex-direction: row;
   justify-content: space-between;

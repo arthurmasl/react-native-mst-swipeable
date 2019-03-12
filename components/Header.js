@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
+import { inject, observer } from 'mobx-react';
 import { withRouter } from 'react-router-native';
 import styled from 'styled-components';
 
@@ -18,7 +19,7 @@ const Logo = styled.Text`
   letter-spacing: 2px;
 `;
 
-const HeaderButton = styled.View`
+const HeaderButton = styled.TouchableOpacity`
   width: 20px;
   height: 20px;
   justify-content: center;
@@ -32,18 +33,18 @@ const Line = styled.View`
   opacity: 0.5;
 `;
 
-const Header = ({ history }) => {
+const Header = ({ store, history }) => {
   return (
     <HeaderWrapper>
       <TouchableOpacity onPress={() => history.push('/')}>
         <Logo>LOGO</Logo>
       </TouchableOpacity>
-      <HeaderButton>
+      <HeaderButton onPress={store.changeNavState}>
         <Line />
-        <Line />
+        {store.navOpened === false && <Line />}
       </HeaderButton>
     </HeaderWrapper>
   );
 };
 
-export default withRouter(Header);
+export default withRouter(inject('store')(observer(Header)));

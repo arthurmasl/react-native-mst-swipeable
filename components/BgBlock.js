@@ -1,7 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import styled, { css } from 'styled-components';
-import colors from './colors';
+import colors from '../utils/colors';
 import { withRouter } from 'react-router-native';
 
 export const BgBlockWrapper = styled.View`
