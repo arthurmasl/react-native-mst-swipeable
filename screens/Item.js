@@ -8,7 +8,7 @@ import ContentBlock, { ItemText } from '../components/ContentBlock';
 import Heart from '../assets/Heart';
 
 const StyledBgBlockWrapper = styled(BgBlockWrapper)`
-  height: 200px;
+  height: 35%;
 
   ${props =>
     props.bg &&

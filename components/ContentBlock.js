@@ -11,10 +11,13 @@ const ContentBlockWrapper = styled.View`
   padding: 0px 5% 0px 5%;
 `;
 
-const ItemWrapper = styled.TouchableOpacity`
-  width: 100px;
-  height: 220px;
-  margin-right: 20px;
+const ItemWrapper = styled.View`
+  height: 100%;
+  padding-right: 20px;
+`;
+
+const ItemInner = styled.TouchableOpacity`
+  height: 100%;
 `;
 
 const ItemPic = styled.View`
@@ -43,18 +46,29 @@ export const ItemText = styled.Text`
 `;
 
 const Swiper = styled(SwipeableViews)`
-  max-width: 115px;
+  max-width: 33.33%;
   overflow: visible;
+`;
+
+const ClickBlocker = styled.TouchableOpacity`
+  height: 100%;
+  width: 20px;
+  position: absolute;
+  right: 0;
+  z-index: 1000;
 `;
 
 const Item = ({ title, text, bg, onPress }) => {
   return (
-    <ItemWrapper onPress={onPress} activeOpacity={1}>
-      <ItemPic bg={bg} />
-      <ItemContent>
-        <ItemTitle>{title}</ItemTitle>
-        <ItemText>{text}</ItemText>
-      </ItemContent>
+    <ItemWrapper>
+      <ClickBlocker />
+      <ItemInner onPress={onPress} activeOpacity={1}>
+        <ItemPic bg={bg} />
+        <ItemContent>
+          <ItemTitle>{title}</ItemTitle>
+          <ItemText>{text}</ItemText>
+        </ItemContent>
+      </ItemInner>
     </ItemWrapper>
   );
 };

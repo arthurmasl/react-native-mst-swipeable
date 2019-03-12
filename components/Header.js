@@ -5,11 +5,11 @@ import { withRouter } from 'react-router-native';
 import styled from 'styled-components';
 
 const HeaderWrapper = styled.View`
-  height: 70px;
+  height: 10%;
   justify-content: space-between;
   align-items: center;
   padding-left: 7%;
-  padding-right: 7%;
+  /* padding-right: 7%; */
   flex-direction: row;
   /* background-color: #fff; */
 `;
@@ -20,9 +20,11 @@ const Logo = styled.Text`
 `;
 
 const HeaderButton = styled.TouchableOpacity`
-  width: 20px;
-  height: 20px;
+  width: 60px;
+  height: 60px;
   justify-content: center;
+  padding-left: 5%;
+  padding-right: 7%;
 `;
 
 const Line = styled.View`

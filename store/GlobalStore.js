@@ -21,7 +21,8 @@ const GlobalStore = types
     items: types.array(Item),
     currentItem: types.string,
     navOpened: types.boolean,
-    tags: types.array(Tag)
+    tags: types.array(Tag),
+    scroll: types.boolean
   })
   .actions(self => ({
     setCurrentItem(id) {
@@ -45,6 +46,9 @@ const GlobalStore = types
         }
         return item;
       });
+    },
+    changeScroll(state) {
+      self.scroll = state;
     }
   }))
   .views(self => ({
@@ -82,6 +86,7 @@ const GlobalStore = types
     }
   }))
   .create({
+    scroll: true,
     navOpened: false,
     currentItem: '5',
     items: items,

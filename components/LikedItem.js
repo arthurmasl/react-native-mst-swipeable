@@ -58,11 +58,23 @@ const UnlikeText = styled.Text`
   font-size: 30px;
 `;
 
-const LikedItem = ({ title, bg, text, handleChange, forLike, liked }) => {
+const LikedItem = ({
+  title,
+  bg,
+  text,
+  handleChange,
+  handleSwipe,
+  handleSwipeEnd,
+  forLike,
+  liked
+}) => {
   return (
     <LikedItemWrapper
       onChangeIndex={handleChange}
       index={forLike && liked ? 1 : 0}
+      onSwitching={i => handleSwipe(i)}
+      onTransitionEnd={handleSwipeEnd}
+      hysteresis={0.9}
     >
       <ItemContent>
         <Pic bg={bg} />

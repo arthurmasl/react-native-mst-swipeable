@@ -5,21 +5,23 @@ import colors from '../utils/colors';
 import { withRouter } from 'react-router-native';
 
 export const BgBlockWrapper = styled.View`
-  height: 250px;
+  height: 40%;
   background-color: ${colors[0]};
 
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
 
-  padding: 30px 2.5%;
+  padding: 30px 10px;
 `;
 
 const Item = styled.TouchableOpacity`
-  /* flex: 1; */
-  width: 100px;
+  flex: 1;
+  /* width: 100px; */
   background-color: ${props => props.bg};
   border-radius: 5px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+  margin: 0 10px;
 
   ${props =>
     props.center &&
